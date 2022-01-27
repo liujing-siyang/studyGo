@@ -1,0 +1,6 @@
+addr: "101.37.25.231"
+port: 8848
+namespace: "e76f5809-6235-47e9-96c2-66cba7e8f8f4"
+dataId: "study-nacos"
+dataGroup: "test"
+loglLevel: "debug"

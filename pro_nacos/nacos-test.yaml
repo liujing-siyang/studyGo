@@ -1,0 +1,6 @@
+addr: "121.4.152.66"
+port: 8848
+namespace: "df67dd2e-d981-4eda-af70-48e3ee7b1c68"
+dataId: "wx_robot_push.json"
+dataGroup: "test"
+loglLevel: "debug"

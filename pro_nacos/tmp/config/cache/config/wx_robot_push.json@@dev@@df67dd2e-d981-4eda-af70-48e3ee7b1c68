@@ -1,0 +1,27 @@
+{
+ 
+   "BI80MysqlUrl":      "PCBI:rBJMGK*3NTSh@tcp(172.17.16.15:3306)/BI?charset=utf8&parseTime=true",
+	"CrmMysqlUrl":       "tcp://172.17.200.16:9000?database=smarthr-crm&username=data_code&password=RL12AnHNdE6XS606&read_timeout=10&write_timeout=20",
+	"PrivilegeMysqlUrl": "tcp://172.17.200.16:9000?database=smarthr-privilege&username=data_code&password=RL12AnHNdE6XS606&read_timeout=10&write_timeout=20",
+	"PubilcMysqlUrl"  :  "tcp://172.17.200.16:9000?database=public&username=data_code&password=RL12AnHNdE6XS606&read_timeout=10&write_timeout=20",
+	"CmdWkhtmltoimage" : "wkhtmltoimage",
+	"SqlLog" : false,
+
+	"RobotWebhookPrefix" : "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=",
+
+	"RKDev" : "5c370ea5-6ce3-4315-8bab-67e0af2d406e", 
+
+	"RKKjBranchVisitRanking"      : "5c370ea5-6ce3-4315-8bab-67e0af2d406e", 
+	"RKRcBranchVisitRanking"      : "5c370ea5-6ce3-4315-8bab-67e0af2d406e", 
+	"RKKjBranchNewDemandsRanking" : "5c370ea5-6ce3-4315-8bab-67e0af2d406e", 
+	"RKPersonalDeliveryRanking"   : "5c370ea5-6ce3-4315-8bab-67e0af2d406e", 
+	"RKAreaDeliveryRanking"       : "5c370ea5-6ce3-4315-8bab-67e0af2d406e", 
+	"RKZqxDaily"                  : "5c370ea5-6ce3-4315-8bab-67e0af2d406e", 
+
+	"ZqxDailyUrl" : "https://test1mbi.joyobpo.com/?source=weChat", 
+
+	"CronKjZqxNotifyAt22" : "0 20 16 * * *", 
+	"CronRcZqxNotifyAt22" : "0 0 22 * * *" ,
+	"IsPushKj" : true,
+	"IsPushRc" : false
+  }

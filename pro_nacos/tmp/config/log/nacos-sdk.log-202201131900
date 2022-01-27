@@ -1,0 +1,16 @@
+2022-01-13T19:13:40.279+0800	[34mINFO[0m	[client.ListenConfig] request params:map[Listening-Configs:wx_robot_push.jsondevd174e2d65d669bca5f12088b74f70dc5df67dd2e-d981-4eda-af70-48e3ee7b1c68 tenant:df67dd2e-d981-4eda-af70-48e3ee7b1c68] header:map[Content-Type:application/x-www-form-urlencoded;charset=utf-8 Long-Pulling-Timeout:30000 Long-Pulling-Timeout-No-Hangup:true accessKey: secretKey:] 
+
+2022-01-13T19:13:40.299+0800	[34mINFO[0m	[client.ListenConfig] no change
+2022-01-13T19:13:40.310+0800	[34mINFO[0m	[client.ListenConfig] request params:map[Listening-Configs:wx_robot_push.jsondevd174e2d65d669bca5f12088b74f70dc5df67dd2e-d981-4eda-af70-48e3ee7b1c68 tenant:df67dd2e-d981-4eda-af70-48e3ee7b1c68] header:map[Content-Type:application/x-www-form-urlencoded;charset=utf-8 Long-Pulling-Timeout:30000 accessKey: secretKey:] 
+
+2022-01-13T19:14:10.150+0800	[34mINFO[0m	[client.ListenConfig] no change
+2022-01-13T19:14:10.170+0800	[34mINFO[0m	[client.ListenConfig] request params:map[Listening-Configs:wx_robot_push.jsondevd174e2d65d669bca5f12088b74f70dc5df67dd2e-d981-4eda-af70-48e3ee7b1c68 tenant:df67dd2e-d981-4eda-af70-48e3ee7b1c68] header:map[Content-Type:application/x-www-form-urlencoded;charset=utf-8 Long-Pulling-Timeout:30000 accessKey: secretKey:] 
+
+2022-01-13T19:14:37.844+0800	[34mINFO[0m	[client.ListenConfig] config changed:wx_robot_push.json%02dev%02df67dd2e-d981-4eda-af70-48e3ee7b1c68%01
+
+2022-01-13T19:14:37.875+0800	[34mINFO[0m	[client.ListenConfig] request params:map[Listening-Configs:wx_robot_push.jsondev1cd7e4c0c89c7acd162b14bbb0a4fffddf67dd2e-d981-4eda-af70-48e3ee7b1c68 tenant:df67dd2e-d981-4eda-af70-48e3ee7b1c68] header:map[Content-Type:application/x-www-form-urlencoded;charset=utf-8 Long-Pulling-Timeout:30000 accessKey: secretKey:] 
+
+2022-01-13T19:14:54.360+0800	[34mINFO[0m	[client.ListenConfig] config changed:wx_robot_push.json%02dev%02df67dd2e-d981-4eda-af70-48e3ee7b1c68%01
+
+2022-01-13T19:14:54.391+0800	[34mINFO[0m	[client.ListenConfig] request params:map[Listening-Configs:wx_robot_push.jsondevd174e2d65d669bca5f12088b74f70dc5df67dd2e-d981-4eda-af70-48e3ee7b1c68 tenant:df67dd2e-d981-4eda-af70-48e3ee7b1c68] header:map[Content-Type:application/x-www-form-urlencoded;charset=utf-8 Long-Pulling-Timeout:30000 accessKey: secretKey:] 
+

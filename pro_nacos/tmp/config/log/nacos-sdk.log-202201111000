@@ -1,0 +1,25 @@
+2022-01-11T10:31:09.641+0800	[34mINFO[0m	[client.ListenConfig] request params:map[Listening-Configs:wx_robot_push.jsondev2411914bcd2f72032fce6aac5a52136fdf67dd2e-d981-4eda-af70-48e3ee7b1c68 tenant:df67dd2e-d981-4eda-af70-48e3ee7b1c68] header:map[Content-Type:application/x-www-form-urlencoded;charset=utf-8 Long-Pulling-Timeout:30000 Long-Pulling-Timeout-No-Hangup:true accessKey: secretKey:] 
+
+2022-01-11T10:31:09.671+0800	[34mINFO[0m	[client.ListenConfig] no change
+2022-01-11T10:31:09.687+0800	[34mINFO[0m	[client.ListenConfig] request params:map[Listening-Configs:wx_robot_push.jsondev2411914bcd2f72032fce6aac5a52136fdf67dd2e-d981-4eda-af70-48e3ee7b1c68 tenant:df67dd2e-d981-4eda-af70-48e3ee7b1c68] header:map[Content-Type:application/x-www-form-urlencoded;charset=utf-8 Long-Pulling-Timeout:30000 accessKey: secretKey:] 
+
+2022-01-11T10:31:31.388+0800	[34mINFO[0m	[client.ListenConfig] config changed:wx_robot_push.json%02dev%02df67dd2e-d981-4eda-af70-48e3ee7b1c68%01
+
+2022-01-11T10:31:31.422+0800	[34mINFO[0m	[client.ListenConfig] request params:map[Listening-Configs:wx_robot_push.jsondev4e5686df8b85387a3c9642d74620769cdf67dd2e-d981-4eda-af70-48e3ee7b1c68 tenant:df67dd2e-d981-4eda-af70-48e3ee7b1c68] header:map[Content-Type:application/x-www-form-urlencoded;charset=utf-8 Long-Pulling-Timeout:30000 accessKey: secretKey:] 
+
+2022-01-11T10:32:00.937+0800	[34mINFO[0m	[client.ListenConfig] no change
+2022-01-11T10:32:00.950+0800	[34mINFO[0m	[client.ListenConfig] request params:map[Listening-Configs:wx_robot_push.jsondev4e5686df8b85387a3c9642d74620769cdf67dd2e-d981-4eda-af70-48e3ee7b1c68 tenant:df67dd2e-d981-4eda-af70-48e3ee7b1c68] header:map[Content-Type:application/x-www-form-urlencoded;charset=utf-8 Long-Pulling-Timeout:30000 accessKey: secretKey:] 
+
+2022-01-11T10:32:22.547+0800	[34mINFO[0m	[client.ListenConfig] request params:map[Listening-Configs:wx_robot_push.jsondev4e5686df8b85387a3c9642d74620769cdf67dd2e-d981-4eda-af70-48e3ee7b1c68 tenant:df67dd2e-d981-4eda-af70-48e3ee7b1c68] header:map[Content-Type:application/x-www-form-urlencoded;charset=utf-8 Long-Pulling-Timeout:30000 Long-Pulling-Timeout-No-Hangup:true accessKey: secretKey:] 
+
+2022-01-11T10:32:22.564+0800	[34mINFO[0m	[client.ListenConfig] no change
+2022-01-11T10:32:22.576+0800	[34mINFO[0m	[client.ListenConfig] request params:map[Listening-Configs:wx_robot_push.jsondev4e5686df8b85387a3c9642d74620769cdf67dd2e-d981-4eda-af70-48e3ee7b1c68 tenant:df67dd2e-d981-4eda-af70-48e3ee7b1c68] header:map[Content-Type:application/x-www-form-urlencoded;charset=utf-8 Long-Pulling-Timeout:30000 accessKey: secretKey:] 
+
+2022-01-11T10:32:32.938+0800	[34mINFO[0m	[client.ListenConfig] config changed:wx_robot_push.json%02dev%02df67dd2e-d981-4eda-af70-48e3ee7b1c68%01
+
+2022-01-11T10:32:32.962+0800	[34mINFO[0m	[client.ListenConfig] request params:map[Listening-Configs:wx_robot_push.jsondev2411914bcd2f72032fce6aac5a52136fdf67dd2e-d981-4eda-af70-48e3ee7b1c68 tenant:df67dd2e-d981-4eda-af70-48e3ee7b1c68] header:map[Content-Type:application/x-www-form-urlencoded;charset=utf-8 Long-Pulling-Timeout:30000 accessKey: secretKey:] 
+
+2022-01-11T10:32:45.550+0800	[34mINFO[0m	[client.ListenConfig] config changed:wx_robot_push.json%02dev%02df67dd2e-d981-4eda-af70-48e3ee7b1c68%01
+
+2022-01-11T10:32:45.574+0800	[34mINFO[0m	[client.ListenConfig] request params:map[Listening-Configs:wx_robot_push.jsondev4e5686df8b85387a3c9642d74620769cdf67dd2e-d981-4eda-af70-48e3ee7b1c68 tenant:df67dd2e-d981-4eda-af70-48e3ee7b1c68] header:map[Content-Type:application/x-www-form-urlencoded;charset=utf-8 Long-Pulling-Timeout:30000 accessKey: secretKey:] 
+
