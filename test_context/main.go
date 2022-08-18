@@ -13,10 +13,10 @@ import (
 var wg sync.WaitGroup
 
 func main() {
-	deadline()
+	// deadline()
 	//timeOut()
 	//cancel()
-	//value()
+	value()
 }
 
 //WithCancel
@@ -93,7 +93,6 @@ func timeOut() {
 }
 
 // context.WithValue
-
 type TraceCode string
 
 func worker2(ctx context.Context) {

@@ -1,0 +1,31 @@
+syntax = "proto3"; // 版本声明，使用Protocol Buffers v3版本
+
+option go_package = "./pb";  // 指定生成的Go代码在你项目中的导入路径
+
+//从执行protoc这个命令的当前目录算起
+import "pb/user.proto";
+import "google/protobuf/any.proto";
+
+package pb; // 包名
+
+
+// 定义服务
+service Greeter {
+    // SayHello 方法
+    rpc SayHello (HelloRequest) returns (HelloResponse) {}
+}
+
+// 请求消息
+message HelloRequest {
+    string name = 1;
+}
+
+message content{
+    string msg =1;
+}
+// 响应消息
+message HelloResponse {
+    string reply = 1;
+    User user = 2;//引入其它的proto文件定义的对象
+    google.protobuf.Any data = 3;//使用any类型
+}

@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	err := config.Initconfig1()
+	err := config.Initconfig()
 	if err != nil {
 		fmt.Printf("err %v", err)
 	}
