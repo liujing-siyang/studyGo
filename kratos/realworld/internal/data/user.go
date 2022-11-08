@@ -34,7 +34,6 @@ type profileRepo struct {
 	log  *log.Helper
 }
 
-// NewGreeterRepo .
 func NewProfileRepo(data *Data, logger log.Logger) biz.ProfileRepo {
 	return &profileRepo{
 		data: data,
@@ -47,7 +46,6 @@ type tagRepo struct {
 	log  *log.Helper
 }
 
-// NewGreeterRepo .
 func NewTagRepo(data *Data, logger log.Logger) biz.TagRepo {
 	return &tagRepo{
 		data: data,
