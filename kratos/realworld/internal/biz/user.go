@@ -2,7 +2,7 @@ package biz
 
 import (
 	"context"
-	"errors"
+	"github.com/go-kratos/kratos/v2/errors"
 	"realworld/internal/conf"
 	"realworld/internal/pkg/middleware/auth"
 
@@ -44,7 +44,7 @@ func verifyPassword(hashPassword, inputPassword string) bool {
 
 type UserRepo interface {
 	CreatUser(ctx context.Context, user *User) error
-	GetUserByEmail(ctx context.Context, email string) (User, error)
+	GetUserByEmail(ctx context.Context, email string) (*User, error)
 }
 
 type ProfileRepo interface {
@@ -86,12 +86,15 @@ func (uc *UserUsecase) Register(ctx context.Context, email, username, password s
 }
 
 func (uc *UserUsecase) Login(ctx context.Context, email string, password string) (*UserLogin, error) {
+	if len(email) == 0{
+		return nil ,errors.New(422,"login","email is empty")
+	}
 	u, err := uc.ur.GetUserByEmail(ctx, email)
 	if err != nil {
 		return nil, err
 	}
 	if !verifyPassword(u.PasswordHash, password) {
-		return nil, errors.New("Login failed")
+		return nil, errors.Unauthorized("login","Login failed")
 	}
 	return &UserLogin{
 		Email:    u.Email,

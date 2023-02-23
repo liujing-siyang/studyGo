@@ -16,7 +16,6 @@ func PKCS5Padding(plaintext []byte, blockSize int) []byte {
 func PKCS5UnPadding(origData []byte) []byte {
 	length := len(origData)
 	unPadding := int(origData[length-1])
-	fmt.Printf("%d,---%d\n", length, unPadding)
 	return origData[:(length - unPadding)]
 }
 
@@ -30,6 +29,7 @@ func AESEncryptCBC(origData, key []byte) ([]byte, error) {
 	blockSize := block.BlockSize()
 	origData = PKCS5Padding(origData, blockSize)
 	blockMode := cipher.NewCBCEncrypter(block, key[:blockSize]) //初始向量的长度必须等于块block的长度16字节
+	fmt.Printf("IV:%s\n",key[:blockSize])
 	encrypted := make([]byte, len(origData))
 	blockMode.CryptBlocks(encrypted, origData)
 	return encrypted, nil

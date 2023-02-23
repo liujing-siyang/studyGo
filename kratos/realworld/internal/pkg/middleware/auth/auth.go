@@ -25,6 +25,7 @@ func GenerateToken(secret, username string) string {
 	return tokenString
 }
 
+// 自定义中间件,实现 Middleware 接口
 func JWTauth(secret string) middleware.Middleware {
 	return func(handler middleware.Handler) middleware.Handler {
 		return func(ctx context.Context, req interface{}) (reply interface{}, err error) {

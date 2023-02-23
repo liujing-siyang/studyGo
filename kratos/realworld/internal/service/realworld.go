@@ -18,17 +18,26 @@ func NewRealWorldService(uc *biz.UserUsecase) *RealWorldService {
 }
 
 func (s *RealWorldService) Login(ctx context.Context, req *pb.LoginRequest) (*pb.UserReply, error) {
-	return &pb.UserReply{}, nil
+	rv, err := s.uc.Login(ctx, req.User.Email, req.User.Password)
+	if err != nil {
+		return nil, err
+	}
+	return &v1.UserReply{
+		User: &v1.User{
+			Username: rv.Username,
+			Token:    rv.Token,
+		},
+	}, nil
 }
 func (s *RealWorldService) Register(ctx context.Context, req *pb.RegisterRequest) (*pb.UserReply, error) {
-	u,err := s.uc.Register(ctx,req.User.Email,req.User.Username,req.User.Password)
-	if err != nil{
-		return nil,err
+	u, err := s.uc.Register(ctx, req.User.Email, req.User.Username, req.User.Password)
+	if err != nil {
+		return nil, err
 	}
 	return &pb.UserReply{
 		User: &v1.User{
 			Username: u.Username,
-			Token: u.Token,
+			Token:    u.Token,
 		},
 	}, nil
 }

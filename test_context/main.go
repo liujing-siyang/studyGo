@@ -6,8 +6,11 @@ import (
 	"io/ioutil"
 	"net/http"
 	"sync"
+	"sync/atomic"
 
 	"time"
+
+	"test_context/test"
 )
 
 var wg sync.WaitGroup
@@ -16,10 +19,11 @@ func main() {
 	// deadline()
 	//timeOut()
 	//cancel()
-	value()
+	// value()
+	test.ValueCopy()
 }
 
-//WithCancel
+// WithCancel
 func gen(ctx context.Context) <-chan int {
 	dst := make(chan int)
 	n := 1
@@ -47,7 +51,7 @@ func cancel() {
 	}
 }
 
-//WithDeadline
+// WithDeadline
 func deadline() {
 	d := time.Now().Add(50 * time.Millisecond)
 	ctx, cancel := context.WithDeadline(context.Background(), d)
@@ -65,7 +69,7 @@ func deadline() {
 	}
 }
 
-//WithTimeout,返回WithDeadline(parent, time.Now().Add(timeout))
+// WithTimeout,返回WithDeadline(parent, time.Now().Add(timeout))
 func worker(ctx context.Context) {
 LOOP:
 	for {
@@ -180,3 +184,5 @@ func doCall(ctx context.Context) {
 		fmt.Printf("resp:%v\n", string(data))
 	}
 }
+
+

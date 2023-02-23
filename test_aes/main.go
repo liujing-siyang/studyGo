@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	password := "71MKCQ9X1kb"
+	password := "71MfCx9X1kb"
 
 	// data := util.AESEncryptECB([]byte(password), []byte("H6Jrh5qUte2YU2z8u8ouR6VdY3iIdBrx"))
 	// cre := util.AESDecryptECB(data, []byte("H6Jrh5qUte2YU2z8u8ouR6VdY3iIdBrx"))

@@ -9,6 +9,16 @@ package pb; // 包名
 service Greeter {
     // SayHello 方法
     rpc SayHello (HelloRequest) returns (HelloResponse) {}
+    // 服务端返回流式数据
+    rpc LotsOfReplies(HelloRequest) returns (stream HelloResponse);
+    // 客户端发送流式数据
+    rpc LotsOfGreetings(stream HelloRequest) returns (HelloResponse);
+    // 双向流式数据
+    rpc BidiHello(stream HelloRequest) returns (stream HelloResponse);
+    // 添加metadata
+    rpc UnarySayHello (HelloRequest) returns (HelloResponse);
+
+    rpc BidirectionalStreamingSayHello(stream HelloRequest) returns (stream HelloResponse);
 }
 
 // 请求消息

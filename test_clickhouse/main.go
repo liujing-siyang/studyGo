@@ -1,11 +1,13 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 
-	"gorm.io/driver/clickhouse"
-	"gorm.io/gorm"
-	"gorm.io/gorm/schema"
+	"github.com/ClickHouse/clickhouse-go/v2"
+	// "gorm.io/driver/clickhouse"
+	// "gorm.io/gorm"
+	// "gorm.io/gorm/schema"
 )
 
 type VisitRankingOrg struct {
@@ -16,19 +18,23 @@ type VisitRankingOrg struct {
 }
 
 func main() {
+	clickhouse_chproxy()
+}
+
+func clickhouseCon() {
 	//dsn := "tcp://212.64.27.146:9000?database=smarthr-crm&username=data_code&password=RL12AnHNdE6XS606&read_timeout=10&write_timeout=20"
-	dsn := "tcp://172.17.2.5:9000?database=YGBI&username=default&password=RL12AnHNdE6XS606&read_timeout=10&write_timeout=20"
-	db, err := gorm.Open(clickhouse.Open(dsn), &gorm.Config{
-		NamingStrategy: schema.NamingStrategy{
-			SingularTable: true, // 使用单数表名，启用该选项后，`User` 表将是`user`
-		},
-	})
-	if err != nil {
-		fmt.Println("connect fail")
-	} else {
-		fmt.Println("connect success")
-		fmt.Println(db)
-	}
+	// dsn := "tcp://172.17.2.5:9000?database=YGBI&username=default&password=RL12AnHNdE6XS606&read_timeout=10&write_timeout=20"
+	// db, err := gorm.Open(clickhouse.Open(dsn), &gorm.Config{
+	// 	NamingStrategy: schema.NamingStrategy{
+	// 		SingularTable: true, // 使用单数表名，启用该选项后，`User` 表将是`user`
+	// 	},
+	// })
+	// if err != nil {
+	// 	fmt.Println("connect fail")
+	// } else {
+	// 	fmt.Println("connect success")
+	// 	fmt.Println(db)
+	// }
 	// sql := `SELECT o4.id sign_branch_org_id, o4.org_title sign_branch_org_name, o5.id sign_org_id, o5.org_title sign_org_title
 	// 		FROM org o3  -- 区
 	// 		LEFT JOIN org o4 ON o3.id = o4.pid -- 分公司
@@ -79,4 +85,58 @@ func main() {
 	// 	return
 	// }
 	// connect.Close()
+}
+
+func clickhouse_chproxy() {
+	err := Connect()
+	if err != nil {
+		fmt.Println(err.Error())
+	} else {
+		fmt.Println("connect success")
+	}
+}
+
+func Connect() error {
+	conn := clickhouse.OpenDB(&clickhouse.Options{
+		Addr: []string{fmt.Sprintf("%s:%d", "212.64.27.146", 9080)},
+		Auth: clickhouse.Auth{
+			Database: "test1_smarthr_finance",
+			Username: "dev",
+			Password: "dev123",
+		},
+		Settings: clickhouse.Settings{
+			"max_execution_time": 60,
+		},
+		// DialTimeout: 5 * time.Second,
+		Compression: &clickhouse.Compression{
+			Method: clickhouse.CompressionLZ4,
+		},
+		Protocol: clickhouse.HTTP, //使用chproxy指定HTTP协议
+	})
+	err := conn.Ping()
+	if err != nil {
+		return err
+	}
+	sql := `
+		select id from bill_invoice bi limit 10
+	`
+	rows, err := conn.Query(sql)
+	if err != nil {
+		return err
+	}
+	defer rows.Close()
+	for rows.Next() {
+		var id int
+		err = rows.Scan(&id)
+		fmt.Println(id)
+	}
+	return err
+}
+
+func ConnectDSN() error {
+	conn, err := sql.Open("clickhouse", fmt.Sprintf("clickhouse://%s:%d?username=%s&password=%s", "212.64.27.146", 9080, "dev", "dev123"))
+	if err != nil {
+		return err
+	}
+	return conn.Ping()
 }
