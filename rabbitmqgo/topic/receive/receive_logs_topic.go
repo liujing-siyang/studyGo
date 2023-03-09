@@ -32,7 +32,8 @@ func main() {
 		nil,          // arguments
 	)
 	failOnError(err, "Failed to declare an exchange")
-
+	s := map[string]string{"s":"s"}
+	_ =s 
 	q, err := ch.QueueDeclare(
 		"",    // name
 		false, // durable

@@ -76,6 +76,26 @@ func test4() {
 	fmt.Println(outerSlice)
 }
 
+func TestSlice(s []int) {
+	s = append(s, 3)
+	s = append(s, 4)
+	fmt.Printf("s:%p\n", &s)
+	fmt.Printf("s[0]:%p\n", &s[0])
+}
+
+func test5() {
+	arr := make([]int, 1, 10)
+	arr = append(arr, 1)
+	arr = append(arr, 2)
+	fmt.Printf("arr:%p\n", &arr)
+	fmt.Printf("arr[0]:%p\n", &arr[0])
+	TestSlice(arr)
+	// 值传递，故arr和s地址不一样，但首元素地址是一样的，因为是引用的同一个数组，
+	// 而由于arr的容量是10，TestSlice中没有扩容，所以操作影响了指向同一个的底层数组
+	// 但由于arr本身长度是3，所以看不到TestSlice添加的4，5元素
+	fmt.Printf("%d,%d,%d", arr[0], arr[1], len(arr))
+}
+
 func main() {
 	test2()
 }

@@ -40,6 +40,7 @@ func main() {
 	defer cancel()
 
 	body := bodyFrom(os.Args)
+	// 如果routing key路由的队列不存在，消息将丢失
 	err = ch.PublishWithContext(ctx,
 		"logs_topic",          // exchange
 		severityFrom(os.Args), // routing key
