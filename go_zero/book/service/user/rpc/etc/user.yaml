@@ -1,0 +1,12 @@
+Name: user.rpc
+ListenOn: 0.0.0.0:8080
+Etcd:
+  Hosts:
+  - 101.37.25.231:2379
+  Key: user.rpc
+Mysql:
+  DataSource: root:lry981210@tcp(101.37.25.231:3306)/test?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+CacheRedis:
+  - Host: 101.37.25.231:6379
+    Pass: lryredis
+    Type: node

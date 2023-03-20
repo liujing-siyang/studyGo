@@ -1,0 +1,12 @@
+Name: user-api
+Host: 0.0.0.0
+Port: 8888
+Mysql:
+  DataSource: root:lry981210@tcp(101.37.25.231:3306)/test?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+CacheRedis:
+  - Host: 101.37.25.231:6379
+    Pass: lryredis
+    Type: node
+Auth:
+  AccessSecret: d3a96c59-2ee3-462b-80c7-1f91587d4057
+  AccessExpire: 3600
