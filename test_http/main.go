@@ -32,3 +32,7 @@ func main() {
 	http.HandleFunc("/hello", helloHandler)
 	log.Fatal(http.ListenAndServe(":12346", nil))
 }
+
+
+// 源码解读，参考：https://darjun.github.io/2021/07/13/in-post/godailylib/nethttp/
+

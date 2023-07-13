@@ -10,10 +10,6 @@ type (
 	}
 )
 
-@server(
-	jwt: Auth
-	middleware: Example // 路由中间件声明
-)
 service search-api {
 	@handler search
 	get /search/do (SearchReq) returns (SearchReply)

@@ -1,5 +1,10 @@
 Name: user.rpc
 ListenOn: 0.0.0.0:8080
+Telemetry:
+  Name: user.rpc
+  Endpoint: http://101.37.25.231:14268/api/traces
+  Sampler: 1.0
+  Batcher: jaeger
 Etcd:
   Hosts:
   - 101.37.25.231:2379

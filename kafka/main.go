@@ -18,8 +18,8 @@ import (
 
 func main() {
 	// producer()
-	// consumer()
-	MyConsumerGroup()
+	consumer()
+	// MyConsumerGroup()
 }
 
 func producer() {
