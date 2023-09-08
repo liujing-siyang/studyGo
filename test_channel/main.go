@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"sync"
 	"time"
 )
 
@@ -15,7 +16,7 @@ import (
 */
 var slice = []int{23, 32, 78, 43, 76, 65, 345, 762, 915, 86}
 
-func main() {
+func test1() {
 	for i := 0; i < 100000; i++ {
 		slice = append(slice, i*2)
 	}
@@ -57,6 +58,36 @@ func SearchTarget(ctx context.Context, data []int, target int, resultChan chan b
 		//time.Sleep(time.Millisecond * 1500)
 		if v == target {
 			resultChan <- true
+			return
+		}
+	}
+}
+
+var wg = sync.WaitGroup{}
+
+func main(){
+	test2()
+}
+
+// 死锁
+func test2(){
+	ch := make(chan int,0)
+	wg.Add(1)
+	go func1(ch)
+	num := <- ch
+	fmt.Println(num)
+	wg.Wait()
+	fmt.Println("end")
+}
+
+
+func func1(ch chan int){
+	defer func(){
+		wg.Done()
+	}()
+	for i := 0;i< 2;i++{
+		ch <- i
+		if i == 1{
 			return
 		}
 	}

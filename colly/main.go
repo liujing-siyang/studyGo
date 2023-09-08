@@ -1,10 +1,12 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"strconv"
 	"strings"
 	"sync/atomic"
+	"time"
 
 	"github.com/gocolly/colly/v2"
 	"github.com/gocolly/colly/v2/proxy"
@@ -13,7 +15,7 @@ import (
 // 选择器示例https://cloud.tencent.com/developer/article/1196783
 
 func main() {
-	test4()
+	test5()
 }
 
 func test1() {
@@ -161,13 +163,14 @@ func test3() {
 }
 
 func test4() {
-	c1 := colly.NewCollector()
+	c1 := colly.NewCollector(
+		colly.Async(true), // 异步
+	)
 
-
-	rp, err := proxy.RoundRobinProxySwitcher("127.0.0.1:7890")
+	rp, err := proxy.RoundRobinProxySwitcher("http://127.0.0.1:7890")
 	if err != nil {
 		fmt.Println(err)
-		// return 
+		// return
 	}
 	// 【设置代理IP】 ，这里使用的是轮询ip方式
 	c1.SetProxyFunc(rp)
@@ -217,4 +220,114 @@ func test4() {
 	})
 
 	c1.Visit("https://unsplash.com/")
+	// 异步需要等待结束
+	c1.Wait()
+	c2.Wait()
+	c3.Wait()
+}
+
+type Item struct {
+	Id     string
+	Width  int
+	Height int
+	Links  Links
+}
+
+type Links struct {
+	Download string
+}
+
+// 从动态加载的url来访问
+func test4_v2() {
+	c := colly.NewCollector(
+		colly.Async(true),
+	)
+	c.SetRequestTimeout(time.Minute)
+	rp, err := proxy.RoundRobinProxySwitcher("http://127.0.0.1:7890")
+	if err != nil {
+		fmt.Println(err)
+		// return
+	}
+	// 设置代理IP
+	c.SetProxyFunc(rp)
+	d := c.Clone()
+	c.OnResponse(func(r *colly.Response) {
+		var items []*Item
+		json.Unmarshal(r.Body, &items)
+		for _, item := range items {
+			d.Visit(item.Links.Download)
+		}
+	})
+
+	var count uint32
+	d.OnResponse(func(r *colly.Response) {
+		fileName := fmt.Sprintf("images/img%d.jpg", atomic.AddUint32(&count, 1))
+		err := r.Save(fileName)
+		if err != nil {
+			fmt.Printf("saving %s failed:%v\n", fileName, err)
+		} else {
+			fmt.Printf("saving %s success\n", fileName)
+		}
+	})
+
+	d.OnRequest(func(r *colly.Request) {
+		fmt.Println("d visiting", r.URL)
+	})
+	d.OnError(func(r *colly.Response, err error) {
+		fmt.Println("d error:", err)
+	})
+
+	for page := 1; page <= 3; page++ {
+		c.Visit(fmt.Sprintf("https://unsplash.com/napi/photos?page=%d&per_page=12", page))
+	}
+	c.Wait()
+	d.Wait()
+}
+
+// type ProductInfo struct {
+// 	Size                   string `selector:"a > div.index_1Ew5p"`
+// 	VehicleServiceType     string
+// 	Material               string
+// 	Brand                  string
+// 	FastenerMaterial       string
+// 	ProductDimensions      string
+// 	Manufacturer           string
+// 	ItemWeight             string
+// 	ItemModelNumber        string
+// 	ManufacturerPartNumber string
+// }
+
+type ProductInfo struct {
+	Details []Detail
+}
+
+type Detail struct {
+	Key   string `selector:"th > .prodDetSectionEntry"`
+	Value string `selector:"td > .prodDetAttrValue"`
+}
+
+func test5() {
+	c := colly.NewCollector()
+	details := ProductInfo{Details: make([]Detail, 0)}
+	c.OnHTML("table.prodDetTable > tbody > tr", func(e *colly.HTMLElement) {
+		hot := Detail{}
+
+		hot.Key = e.ChildText("th.prodDetSectionEntry")
+		hot.Value = strings.Replace(e.ChildText("td.prodDetAttrValue"),"‎","",-1) 
+		details.Details = append(details.Details, hot)
+	})
+	// c.OnResponse(func(r *colly.Response) {
+
+	// })
+	c.OnRequest(func(r *colly.Request) {
+		fmt.Println("d visiting", r.URL)
+	})
+	c.OnError(func(r *colly.Response, err error) {
+		fmt.Println("d error:", err)
+	})
+	c.Visit("https://www.amazon.com/dp/B09BFKBLQK")
+
+	for _, v := range details.Details {
+		fmt.Printf("%s : %s\n", v.Key, v.Value)
+	}
 }
